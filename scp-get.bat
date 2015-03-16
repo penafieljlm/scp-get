@@ -7,35 +7,35 @@
 
 :: Initialize
 @echo off
-set PROTOCOL=sftp
-set SERV=
-set PATH=
-set USER=
-set PASS=
+set _PROTOCOL=sftp
+set _SERV=
+set _PATH=
+set _USER=
+set _PASS=
 
 :: Check Server
-if not "%SERV%"=="" (
+if not "%_SERV%"=="" (
 	goto :skip_serv
 )
 set /P USER=Server: 
 :skip_serv
 
 :: Check Path
-if not "%PATH%"=="" (
+if not "%_PATH%"=="" (
 	goto :skip_path
 )
 set /P PATH=Path to scp-get on Server: 
 :skip_path
 
 :: Check Username
-if not "%USER%"=="" (
+if not "%_USER%"=="" (
 	goto :skip_user
 )
 set /P USER=Username: 
 :skip_user
 
 :: Check Password
-if not "%PASS%"=="" (
+if not "%_PASS%"=="" (
 	goto :skip_pass
 )
 powershell -Command $pword = read-host "Password" -AsSecureString ; $BSTR=[System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($pword) ; [System.Runtime.InteropServices.Marshal]::PtrToStringAuto($BSTR) > .tmp.txt & set /p PASS=<.tmp.txt & del .tmp.txt
@@ -58,8 +58,8 @@ if "%2"=="" (
 )
 :: Create SFTP Script
 del .sftp>nul 2>&1
-echo open %PROTOCOL%://%USER%:%PASS%@%SERV%/ >> .sftp
-echo cd "%PATH%/install" >> .sftp
+echo open %_PROTOCOL%://%_USER%:%_PASS%@%_SERV%/ >> .sftp
+echo cd "%_PATH%/install" >> .sftp
 echo option transfer binary >> .sftp
 echo get "%2.bat" >> .sftp
 echo close >> .sftp
