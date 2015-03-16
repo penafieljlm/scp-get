@@ -16,7 +16,7 @@ The repository directory on the file server should be structured in the followin
   <program_n>.bat
 ```
 As you can see, the scp-get repository must contain ONLY batch files, and each batch file SHOULD contain the procedures on how to install a program.
-The name of the batch files should correspond with the program that it is supposed to install.
+The name of the batch files should correspond with the program that they are supposed to install.
 
 ### Distributing scp-get
 Once you have finished configuring the repository, you will want to distribute the client script (scp-get.bat) amongst your team members.
